@@ -1,11 +1,15 @@
 package com.cultivationsession.controller;
 
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,12 +24,7 @@ public class UserController {
 	@Autowired
 	IUserService userService;
 
-	/**
-	 * @param userDto
-	 * @return
-	 * @throws UserException
-	 * @throws UnsupportedEncodingException
-	 */
+	
 	@PostMapping("/register")
 	public ResponseEntity<Response> register( @RequestBody UserDTO userDto)
 			   {
@@ -35,12 +34,7 @@ public class UserController {
 
 	}
 
-	/**
-	 * @param loginDTO
-	 * @return
-	 * @throws UserException
-	 * @throws UnsupportedEncodingException
-	 */
+
 	@PostMapping("/login")
 	public ResponseEntity<Response> onLogin( @RequestBody LoginDTO loginDTO)
 		{
@@ -48,8 +42,9 @@ public class UserController {
 
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+	
 	@PostMapping("/decode")
-	public Long onDecodingToken(@RequestBody String token){
+	public Long onDecodingToken(@RequestHeader String token){
 		Long userId=userService.getUserID(token);
 		System.out.println("UserID=================>"+userId);
 		return userId;

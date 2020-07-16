@@ -13,18 +13,10 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.auth0.jwt.interfaces.Verification;
 
 
-/**
- * @author admin185
- *
- */
 @Component
 public class TokenUtil {
-	  public  final String TOKEN_SECRET = "sd5745FAHFW";
-	  /**
-	   * create token
-	 * @throws UnsupportedEncodingException 
-	 * @throws IllegalArgumentException 
-	 */
+	  public  final String TOKEN_SECRET = "Laxman";
+	
 	public  String createToken(Long id)   {
         try {
         	//to set algorithm
@@ -45,10 +37,6 @@ public class TokenUtil {
 	  }
 	 
 
-	/**
-	 * @param token
-	 * @return
-	 */
 	public Long decodeToken(String token)
 	  {
 		  Long userid;
